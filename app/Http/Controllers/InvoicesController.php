@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\InvoiceCollection;
+use App\Mail\InvoiceCreated;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class InvoicesController extends Controller
@@ -60,6 +63,8 @@ class InvoicesController extends Controller
         $validatedData['uri'] = $this->makeUniqueUri();
 
         $invoice = Invoice::create($validatedData);
+
+        Mail::to(Arr::get($validatedData, 'email'))->send(new InvoiceCreated($invoice));
 
         return $invoice;
     }
