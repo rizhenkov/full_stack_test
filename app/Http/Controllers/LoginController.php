@@ -10,7 +10,7 @@ class LoginController extends Controller
     /**
      * Handle an authentication attempt.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param Request $request
      *
      * @return Response
      */

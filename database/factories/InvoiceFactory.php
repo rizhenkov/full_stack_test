@@ -24,11 +24,11 @@ class InvoiceFactory extends Factory
     {
         return [
             'school' => $this->faker->colorName . " " . $this->faker->name,
-            'amount' => $this->faker->numberBetween(1000,35000),
+            'amount' => $this->faker->numberBetween(1000, 35000),
             'description' => $this->faker->text(25),
             'status' => $payed = $this->faker->boolean,
-            'uri'    => Str::random(30),
-            'payer'  => ($payed) ? $this->faker->name : null
+            'uri' => Str::random(30),
+            'payer' => ($payed) ? $this->faker->name : null
         ];
     }
 }

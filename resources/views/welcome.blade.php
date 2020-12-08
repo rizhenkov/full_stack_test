@@ -16,9 +16,9 @@
 
         @verbatim
 
-        <div class="table-responsive">
-            <table class="table">
-                <thead class="thead-dark">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-dark">
                     <tr class="text-nowrap">
                         <th width="25%">School name</th>
                         <th width="25%">Description</th>
@@ -27,8 +27,8 @@
                         <th>Invoice link</th>
                         <th>Payer name</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr v-for="invoice in invoices">
                         <td>{{ invoice.school }}</td>
                         <td>{{ invoice.description }}</td>
@@ -36,16 +36,16 @@
                         <td>{{ invoice.status ? "Payment received" : "New" }}</td>
                         <td><a href="#a" onclick="return false;"
                                class="btn-copy btn btn-link"
-                               :data-clipboard-text="invoice.link" >Copy</a></td>
+                               :data-clipboard-text="invoice.link">Copy</a></td>
                         <td>{{ invoice.payer }}</td>
                     </tr>
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
 
-        <div class="text-center p-3">
-            Page {{ current_page }} of {{ last_page }}
-        </div>
+            <div class="text-center p-3">
+                Page {{ current_page }} of {{ last_page }}
+            </div>
 
         @endverbatim
     </div>

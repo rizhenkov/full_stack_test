@@ -6,6 +6,7 @@ use App\Http\Resources\InvoiceCollection;
 use App\Mail\InvoiceCreated;
 use App\Models\Invoice;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -34,7 +35,7 @@ class InvoicesController extends Controller
     public function pay($uri, Request $request)
     {
         $invoice = Invoice::where('uri', $uri)->firstOrFail();
-        if($invoice->status){
+        if ($invoice->status) {
             return redirect($invoice->link)->with('status', 'Invoice already payed!');
         }
 
@@ -48,8 +49,8 @@ class InvoicesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -71,12 +72,10 @@ class InvoicesController extends Controller
 
     protected function makeUniqueUri()
     {
-        do
-        {
+        do {
             $uri = Str::random(30);
             $exists = Invoice::where('uri', $uri)->get();
-        }
-        while(!$exists->isEmpty());
+        } while (!$exists->isEmpty());
 
         return $uri;
     }
@@ -84,8 +83,8 @@ class InvoicesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function show($id)
     {
@@ -95,9 +94,9 @@ class InvoicesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @return Response
      */
     public function update(Request $request, $id)
     {
@@ -107,8 +106,8 @@ class InvoicesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param int $id
+     * @return Response
      */
     public function destroy($id)
     {

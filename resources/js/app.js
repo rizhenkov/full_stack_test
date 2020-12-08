@@ -31,19 +31,19 @@ const app = new Vue({
         this.loadInvoices()
     },
     beforeUpdate() {
-        if(this.clipper){
+        if (this.clipper) {
             this.clipper.destroy();
             this.clipper = null;
         }
     },
     updated() {
         this.clipper = new ClipboardJS('.btn-copy');
-        this.clipper.on('success', function (e){
+        this.clipper.on('success', function (e) {
             Vue.$toast.open('You did it!');
 
             e.clearSelection();
         });
-        this.clipper.on('error', function (e){
+        this.clipper.on('error', function (e) {
             Vue.$toast.open({
                 message: 'Copying failed :(',
                 type: 'error',
@@ -73,12 +73,10 @@ const app = new Vue({
         isHasNextPage() {
             return (this.current_page < this.last_page);
         },
-        nextPage()
-        {
+        nextPage() {
             return this.current_page + 1;
         },
-        prevPage()
-        {
+        prevPage() {
             return this.current_page - 1;
         }
     }

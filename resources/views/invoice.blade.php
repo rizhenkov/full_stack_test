@@ -11,22 +11,22 @@
             <p class="mb-5">Amount: {{ $invoice->amount }}$</p>
 
             @if($invoice->status)
-            <div>
-                Status: <span class="text-success">Payment received</span>
-            </div>
+                <div>
+                    Status: <span class="text-success">Payment received</span>
+                </div>
             @else
-            @csrf
-            <div class="form-row">
-                <div class="col-lg-5">
-                    <div class="form-group">
-                        <label for="inputEmail">Full name</label>
-                        <input type="text" class="form-control" id="inputEmail"
-                               name="payer" placeholder="" required>
+                @csrf
+                <div class="form-row">
+                    <div class="col-lg-5">
+                        <div class="form-group">
+                            <label for="inputEmail">Full name</label>
+                            <input type="text" class="form-control" id="inputEmail"
+                                   name="payer" placeholder="" required>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <button type="submit" class="btn btn-primary">Pay</button>
+                <button type="submit" class="btn btn-primary">Pay</button>
             @endif
         </form>
 
