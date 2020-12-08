@@ -1,0 +1,18 @@
+/* Customized Bootstrap */
+$blue:    #007bff;
+$body-bg: lighten($blue, 35%);
+
+$border-radius: 0;
+$border-radius-lg: 0;
+
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Hide Vue-elements while loading */
+[v-cloak] > * { display:none !important; }
+[v-cloak]::before { content: "loading…" }
+
+// Little modal fix
+.vm--modal.invoice-modal {
+    overflow: initial;
+    border-radius: 0;
+}
