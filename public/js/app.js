@@ -1948,6 +1948,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "InvoiceModal",
   data: function data() {
     return {
+      sendingState: false,
       invoice: {
         school: "",
         description: "",
@@ -1968,6 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
     storeInvoice: function storeInvoice() {
       var _this = this;
 
+      this.sendingState = true;
       axios.post('invoices', this.invoice).then(function (response) {
         _this.$modal.hide('invoiceModal');
 
@@ -1992,6 +1994,8 @@ __webpack_require__.r(__webpack_exports__);
           message: message,
           type: 'error'
         });
+      })["finally"](function () {
+        _this.sendingState = false;
       });
     }
   }
@@ -21461,7 +21465,7 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-lg btn-primary",
-                attrs: { type: "submit" }
+                attrs: { disabled: _vm.sendingState, type: "submit" }
               },
               [_vm._v("Create")]
             ),

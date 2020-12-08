@@ -27,7 +27,7 @@
         </small>
       </div>
       <div class="d-flex justify-content-between">
-        <button class="btn btn-lg btn-primary" type="submit">Create</button>
+        <button class="btn btn-lg btn-primary" :disabled="sendingState" type="submit">Create</button>
         <button class="btn btn-lg btn-secondary" @click="$modal.hide('invoiceModal')" type="button">Cancel</button>
       </div>
     </form>
@@ -39,6 +39,7 @@ export default {
   name: "InvoiceModal",
   data() {
     return {
+      sendingState: false,
       invoice: {
         school: "",
         description: "",
@@ -56,6 +57,7 @@ export default {
       }
     },
     storeInvoice() {
+      this.sendingState = true;
       axios.post('invoices', this.invoice)
           .then((response) => {
             this.$modal.hide('invoiceModal');
@@ -75,6 +77,9 @@ export default {
             Vue.$toast.open({
               message: message, type: 'error',
             })
+          })
+          .finally(() => {
+              this.sendingState = false;
           })
     },
   }
